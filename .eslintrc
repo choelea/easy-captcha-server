@@ -1,0 +1,15 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": "airbnb",
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+  "rules": {
+    "semi": ["error", "never"],
+    "prefer-template":"warn",
+    "max-len": [2, {"code": 180, "tabWidth": 4, "ignoreUrls": true}],
+    "no-console": ["error", { "allow": ["warn", "error"] }]
+  }
+}

@@ -1,0 +1,13 @@
+/node_modules/
+/build/
+/dist/
+/public/js/
+/public/client/front.js
+/public/client/stacktable.js
+/mock/mock-api/
+/public/client/jquery.ui.widget.js
+/public/client/jquery.iframe-transport.js
+/public/client/jquery.fileupload.js
+/public/client/jquery.downCount.js
+/gulpfile.js
+
