@@ -7,8 +7,10 @@ const jwt = require('jsonwebtoken')
 const secret = 'secret'
 const defaultOptions = {
   ignoreChars: '0o1ilL',
+  // background: '#66CCFF',
+  color: true,
   noise: 2,
-  size: 5,
+  size: 4,
   width: 150, // width of captcha
   height: 35, // height of captcha
   fontSize: 35,
@@ -37,7 +39,7 @@ router.post('/verify', (req, res) => {
   try {
     const decoded = jwt.verify(req.body.sCap, secret)
     const captchaText = decoded.data.c
-    if (req.body.captchaCode && captchaText.toLowerCase() !== req.body.captchaCode.toLowerCase()) {
+    if (!req.body.captchaText || captchaText.toLowerCase() !== req.body.captchaText.toLowerCase()) {
       return res.status(400).json({ err: errCode })
     }
   } catch (err) {
