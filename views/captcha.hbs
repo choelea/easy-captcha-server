@@ -1,3 +1,11 @@
-<input type="hidden" name="s-cap" value="{{token}}">
-{{{captchaSVG}}}
-<a href="javascript:"><span id="captchaRefresh"><i class="icon anticon icon-sync" style="font-weight:700;color:#184a80"></i></span></a>
+<div style="height:35px" >
+  <label for="captchaText"><span style="color: #ff6800;">*</span>Verification Code:</label>
+  <input  id="captchaText" name="captchaText" maxlength="5">
+  <input type="hidden" name="sCap" value="{{token}}">
+  <span>
+    <a href="javascript:refreshCaptcha();">
+      <span>{{{captchaSVG}}}</span>
+      <i  style="font-weight:700;color:#184a80">next</i>
+    </a>
+  </span>
+</div>
