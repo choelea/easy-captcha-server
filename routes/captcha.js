@@ -2,6 +2,7 @@ const express = require('express')
 /* eslint-disable new-cap */
 const router = express.Router()
 /* eslint-enable new-cap */
+const auth = require('../middlewares/auth')
 const svgCaptcha = require('svg-captcha')
 const jwt = require('jsonwebtoken')
 const secret = 'secret'
@@ -18,7 +19,8 @@ const defaultOptions = {
 const ERR_WRONG_CODE = 'codeWrong'
 const ERR_EXPIRED_CODE = 'codeExpired'
 /* GET home page. */
-router.get('/', (req, res) => {
+router.get('/', auth.requiresValidClient, (req, res) => {
+  console.log(req.get('Origin'))
   const captcha = svgCaptcha.create(defaultOptions)
   const jwtToken = jwt.sign({
     exp: Math.floor(Date.now() / 1000) + (60 * 10), // 1 minute
