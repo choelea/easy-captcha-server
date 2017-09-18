@@ -1,22 +1,27 @@
 const express = require('express')
-const path = require('path')
+const exphbs = require('express-handlebars')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const captcha = require('./routes/captcha')
+const adminRoutes = require('./routes/adminRoutes')
 const cors = require('cors')
 const app = express()
 app.use(cors())
 // view engine setup
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'hbs')
+app.engine('.html', exphbs({ defaultLayout: 'main', extname: '.html' }))
+app.set('view engine', 'html')
+
+app.use(express.static(`${__dirname}/public`))
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
+
 app.use('/captcha', captcha)
+adminRoutes(app)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
